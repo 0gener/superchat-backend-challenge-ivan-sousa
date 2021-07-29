@@ -1,4 +1,4 @@
-package com.superchat.communicationservice.api.contacts.model;
+package com.superchat.communicationservice.dto;
 
 import java.time.OffsetDateTime;
 
@@ -13,7 +13,7 @@ import lombok.Setter;
 @NoArgsConstructor
 public class ContactDTO extends ContactDetailsDTO {
     @NotNull
-    private Long id;
+    private Integer id;
 
     @NotNull
     private OffsetDateTime createdAt;

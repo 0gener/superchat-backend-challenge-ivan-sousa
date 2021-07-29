@@ -1,4 +1,4 @@
-package com.superchat.communicationservice.api.contacts.model;
+package com.superchat.communicationservice.dto;
 
 import javax.validation.constraints.NotNull;
 

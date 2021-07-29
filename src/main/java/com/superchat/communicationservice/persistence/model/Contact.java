@@ -1,4 +1,4 @@
-package com.superchat.communicationservice.data.model;
+package com.superchat.communicationservice.persistence.model;
 
 import java.time.OffsetDateTime;
 
@@ -13,6 +13,7 @@ import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 import lombok.Setter;
@@ -20,12 +21,17 @@ import lombok.Setter;
 @Getter
 @Setter
 @Entity
+@NoArgsConstructor
 @RequiredArgsConstructor
 @Table(name = "contacts")
 public class Contact {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
+    private Integer id;
+
+    @NonNull
+    @Column(name = "username", nullable = false, unique = false)
+    private String username;
 
     @NonNull
     @Column(name = "name", nullable = false, unique = false)
