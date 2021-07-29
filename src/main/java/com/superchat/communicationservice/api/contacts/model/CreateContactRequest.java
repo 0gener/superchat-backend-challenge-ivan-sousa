@@ -1,5 +1,5 @@
 package com.superchat.communicationservice.api.contacts.model;
 
-public class CreateContactRequest extends Contact {
+public class CreateContactRequest extends ContactDTO {
 
 }

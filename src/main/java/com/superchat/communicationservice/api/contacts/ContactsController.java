@@ -4,9 +4,12 @@ import javax.validation.Valid;
 
 import com.superchat.communicationservice.api.contacts.model.CreateContactRequest;
 import com.superchat.communicationservice.api.contacts.model.ListContactsResponse;
+import com.superchat.communicationservice.data.model.Contact;
+import com.superchat.communicationservice.mapper.ContactsMapper;
 import com.superchat.communicationservice.service.ContactsService;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -24,12 +27,13 @@ public class ContactsController {
 
     @PostMapping(consumes = "application/json", produces = "application/json")
     public void createContact(@Valid @RequestBody CreateContactRequest body) {
-        service.createContact();
+        Contact contact = service.createContact(ContactsMapper.dtoToEntity(body));
     }
 
     @GetMapping(produces = "application/json")
-    public ListContactsResponse listContacts(@RequestParam("page") int page, @RequestParam("size") int size) {
-        service.listContacts();
+    public ListContactsResponse listContacts(@RequestParam(name = "page", defaultValue = "0") int page,
+            @RequestParam(name = "size", defaultValue = "10") int size) {
+        Page<Contact> contacts = service.listContacts(page, size);
 
         return null;
     }

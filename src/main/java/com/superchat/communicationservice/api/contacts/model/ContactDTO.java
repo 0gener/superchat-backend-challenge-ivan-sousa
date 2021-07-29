@@ -9,7 +9,7 @@ import lombok.Setter;
 @Getter
 @Setter
 @NoArgsConstructor
-public class Contact {
+public class ContactDTO {
     @NotNull
     private String name;
 
