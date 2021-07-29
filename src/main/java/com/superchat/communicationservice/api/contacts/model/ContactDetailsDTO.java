@@ -1,7 +1,5 @@
 package com.superchat.communicationservice.api.contacts.model;
 
-import java.time.OffsetDateTime;
-
 import javax.validation.constraints.NotNull;
 
 import lombok.Getter;
@@ -11,13 +9,13 @@ import lombok.Setter;
 @Getter
 @Setter
 @NoArgsConstructor
-public class ContactDTO extends ContactDetailsDTO {
+public class ContactDetailsDTO {
     @NotNull
-    private Long id;
+    private String name;
 
     @NotNull
-    private OffsetDateTime createdAt;
+    private String email;
 
     @NotNull
-    private OffsetDateTime updatedAt;
+    private String phoneNumber;
 }

@@ -8,7 +8,6 @@ import com.superchat.communicationservice.data.model.Contact;
 import com.superchat.communicationservice.mapper.ContactsMapper;
 import com.superchat.communicationservice.service.ContactsService;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
