@@ -1,12 +1,10 @@
 package com.superchat.communicationservice.api;
 
-import java.util.List;
-import java.util.stream.Collectors;
-
 import javax.validation.Valid;
 
-import com.superchat.communicationservice.dto.ContactDTO;
-import com.superchat.communicationservice.dto.ContactDetailsDTO;
+import com.superchat.communicationservice.api.model.ContactCreateRequest;
+import com.superchat.communicationservice.api.model.ContactCreateResponse;
+import com.superchat.communicationservice.api.model.ContactListResponse;
 import com.superchat.communicationservice.dto.mapper.ContactsMapper;
 import com.superchat.communicationservice.persistence.model.Contact;
 import com.superchat.communicationservice.service.ContactsService;
@@ -31,19 +29,19 @@ public class ContactsController {
     private ContactsService service;
 
     @PostMapping(consumes = "application/json", produces = "application/json")
-    public ContactDTO createContact(@RequestHeader("X-Username") String username,
-            @Valid @RequestBody ContactDetailsDTO body) {
+    public ContactCreateResponse createContact(@RequestHeader("X-Username") String username,
+            @Valid @RequestBody ContactCreateRequest body) {
         Contact contact = service.createContact(ContactsMapper.toEntity(username, body));
 
-        return ContactsMapper.toDto(contact);
+        return new ContactCreateResponse(contact);
     }
 
     @GetMapping(produces = "application/json")
-    public Page<Contact> listContacts(@RequestHeader("X-Username") String username,
+    public ContactListResponse listContacts(@RequestHeader("X-Username") String username,
             @RequestParam(name = "page", defaultValue = "0") int page,
             @RequestParam(name = "size", defaultValue = "10") int size) {
         Page<Contact> list = service.listContacts(username, page, size);
 
-        return list;
+        return new ContactListResponse(list);
     }
 }
