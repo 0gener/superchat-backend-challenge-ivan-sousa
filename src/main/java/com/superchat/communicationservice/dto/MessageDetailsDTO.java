@@ -3,7 +3,7 @@ package com.superchat.communicationservice.dto;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
-import com.superchat.communicationservice.gateway.factory.MessageGatewayType;
+import com.superchat.communicationservice.messaging.factory.MessageChannelType;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -17,7 +17,7 @@ public class MessageDetailsDTO {
     private Long contactId;
 
     @NotNull
-    private MessageGatewayType gateway;
+    private MessageChannelType channel;
 
     @NotBlank
     private String body;

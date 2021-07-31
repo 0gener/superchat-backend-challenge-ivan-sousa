@@ -30,9 +30,9 @@ public class MessagesController {
     private MessagesService service;
 
     @PostMapping(consumes = "application/json", produces = "application/json")
-    public ResponseEntity<MessageCreateResponse> createMessage(@RequestHeader("X-Username") String username,
+    public ResponseEntity<MessageCreateResponse> sendMessage(@RequestHeader("X-Username") String username,
             @Valid @RequestBody MessageCreateRequest body) {
-        Message entity = service.createMessage(username, body);
+        Message entity = service.sendMessage(username, body);
         MessageCreateResponse responseEntity = new MessageCreateResponse(entity);
 
         return new ResponseEntity<>(responseEntity, HttpStatus.CREATED);

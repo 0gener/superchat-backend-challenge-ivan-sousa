@@ -11,7 +11,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
-import com.superchat.communicationservice.gateway.factory.MessageGatewayType;
+import com.superchat.communicationservice.messaging.factory.MessageChannelType;
 
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
@@ -40,7 +40,7 @@ public class Message {
 
     @NonNull
     @Column(name = "gateway", nullable = false, unique = false)
-    private MessageGatewayType gateway;
+    private MessageChannelType gateway;
 
     @NonNull
     @Column(name = "original_body", nullable = false, unique = false)

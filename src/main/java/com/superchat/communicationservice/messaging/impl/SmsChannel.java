@@ -1,9 +1,9 @@
-package com.superchat.communicationservice.gateway.impl;
+package com.superchat.communicationservice.messaging.impl;
 
-import com.superchat.communicationservice.gateway.MessageGateway;
+import com.superchat.communicationservice.messaging.MessageChannel;
 import com.superchat.communicationservice.persistence.model.Contact;
 
-public class GoogleBusinessChatGateway implements MessageGateway {
+public class SmsChannel implements MessageChannel {
     @Override
     public void sendMessage(Contact contact, String body) {
         // TODO Missing implementation
