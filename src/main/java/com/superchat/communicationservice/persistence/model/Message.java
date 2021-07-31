@@ -7,6 +7,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.CreationTimestamp;
@@ -23,27 +25,24 @@ import lombok.Setter;
 @Entity
 @NoArgsConstructor
 @RequiredArgsConstructor
-@Table(name = "contacts")
-public class Contact {
+@Table(name = "messages")
+public class Message {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
     @NonNull
-    @Column(name = "username", nullable = false, unique = false)
-    private String username;
+    @ManyToOne
+    @JoinColumn(name = "contact_id", nullable = false)
+    private Contact contact;
 
     @NonNull
-    @Column(name = "name", nullable = false, unique = false)
-    private String name;
+    @Column(name = "original_body", nullable = false, unique = false)
+    private String originalBody;
 
     @NonNull
-    @Column(name = "email", nullable = false, unique = false)
-    private String email;
-
-    @NonNull
-    @Column(name = "phone_number", nullable = false, unique = false)
-    private String phoneNumber;
+    @Column(name = "replaced_body", nullable = false, unique = false)
+    private String replacedBody;
 
     @CreationTimestamp
     @Column(name = "created_at", nullable = false, unique = false)

@@ -5,7 +5,6 @@ import javax.validation.Valid;
 import com.superchat.communicationservice.api.model.ContactCreateRequest;
 import com.superchat.communicationservice.api.model.ContactCreateResponse;
 import com.superchat.communicationservice.api.model.ContactListResponse;
-import com.superchat.communicationservice.dto.mapper.ContactsMapper;
 import com.superchat.communicationservice.persistence.model.Contact;
 import com.superchat.communicationservice.service.ContactsService;
 
@@ -31,7 +30,7 @@ public class ContactsController {
     @PostMapping(consumes = "application/json", produces = "application/json")
     public ContactCreateResponse createContact(@RequestHeader("X-Username") String username,
             @Valid @RequestBody ContactCreateRequest body) {
-        Contact contact = service.createContact(ContactsMapper.toEntity(username, body));
+        Contact contact = service.createContact(username, body);
 
         return new ContactCreateResponse(contact);
     }

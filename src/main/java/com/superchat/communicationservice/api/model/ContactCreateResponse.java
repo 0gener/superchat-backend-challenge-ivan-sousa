@@ -7,10 +7,13 @@ import com.superchat.communicationservice.persistence.model.Contact;
 import lombok.Getter;
 
 @Getter
-public class ContactCreateResponse {
-    private ContactDTO item;
-
+public class ContactCreateResponse extends ItemResponse<ContactDTO, Contact> {
     public ContactCreateResponse(Contact entity) {
-        this.item = ContactsMapper.toDto(entity);
+        super(entity);
+    }
+
+    @Override
+    public ContactDTO convert(Contact entity) {
+        return ContactsMapper.toDto(entity);
     }
 }

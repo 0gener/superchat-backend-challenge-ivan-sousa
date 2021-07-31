@@ -1,5 +1,7 @@
 package com.superchat.communicationservice.service.impl;
 
+import com.superchat.communicationservice.dto.ContactDetailsDTO;
+import com.superchat.communicationservice.dto.mapper.ContactsMapper;
 import com.superchat.communicationservice.persistence.model.Contact;
 import com.superchat.communicationservice.persistence.repository.ContactRepository;
 import com.superchat.communicationservice.service.ContactsService;
@@ -18,8 +20,8 @@ public class ContactsServicesImpl implements ContactsService {
     private ContactRepository contactRepository;
 
     @Override
-    public Contact createContact(Contact contact) {
-        return contactRepository.save(contact);
+    public Contact createContact(String username, ContactDetailsDTO contact) {
+        return contactRepository.save(ContactsMapper.toEntity(username, contact));
     }
 
     @Override
