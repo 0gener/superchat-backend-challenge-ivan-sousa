@@ -20,6 +20,7 @@ import lombok.AllArgsConstructor;
 public class MessagesServiceImpl implements MessagesService {
     private ContactRepository contactRepository;
     private MessageRepository messageRepository;
+    private MessageChannelFactory messageChannelFactory;
 
     @Override
     public Message sendMessage(String username, MessageDetailsDTO dto) {
@@ -31,7 +32,7 @@ public class MessagesServiceImpl implements MessagesService {
 
         Message message = messageRepository.save(new Message(contact, dto.getChannel(), dto.getBody(), replacedBody));
 
-        MessageChannelFactory.getChannel(dto.getChannel()).sendMessage(contact, replacedBody);
+        messageChannelFactory.getChannel(dto.getChannel()).sendMessage(contact, replacedBody);
 
         return message;
     }

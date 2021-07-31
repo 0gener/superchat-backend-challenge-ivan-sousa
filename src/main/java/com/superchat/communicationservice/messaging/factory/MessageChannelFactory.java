@@ -5,15 +5,25 @@ import com.superchat.communicationservice.messaging.impl.EmailChannel;
 import com.superchat.communicationservice.messaging.impl.GoogleBusinessChatChannel;
 import com.superchat.communicationservice.messaging.impl.SmsChannel;
 
+import org.springframework.stereotype.Component;
+
+import lombok.AllArgsConstructor;
+
+@AllArgsConstructor
+@Component
 public class MessageChannelFactory {
-    public static MessageChannel getChannel(MessageChannelType type) {
+    private SmsChannel smsChannel;
+    private EmailChannel emailChannel;
+    private GoogleBusinessChatChannel googleBusinessChatChannel;
+
+    public MessageChannel getChannel(MessageChannelType type) {
         switch (type) {
             case SMS:
-                return new SmsChannel();
+                return smsChannel;
             case EMAIL:
-                return new EmailChannel();
+                return emailChannel;
             case GOOGLE_BUSINESS_CHAT:
-                return new GoogleBusinessChatChannel();
+                return googleBusinessChatChannel;
             default:
                 return null;
         }
