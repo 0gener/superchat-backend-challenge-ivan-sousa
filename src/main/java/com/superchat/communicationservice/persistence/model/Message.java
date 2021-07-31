@@ -11,6 +11,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import com.superchat.communicationservice.gateway.factory.MessageGatewayType;
+
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
@@ -35,6 +37,10 @@ public class Message {
     @ManyToOne
     @JoinColumn(name = "contact_id", nullable = false)
     private Contact contact;
+
+    @NonNull
+    @Column(name = "gateway", nullable = false, unique = false)
+    private MessageGatewayType gateway;
 
     @NonNull
     @Column(name = "original_body", nullable = false, unique = false)
