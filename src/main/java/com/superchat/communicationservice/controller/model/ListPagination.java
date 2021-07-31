@@ -1,4 +1,4 @@
-package com.superchat.communicationservice.api.model;
+package com.superchat.communicationservice.controller.model;
 
 import org.springframework.data.domain.Page;
 

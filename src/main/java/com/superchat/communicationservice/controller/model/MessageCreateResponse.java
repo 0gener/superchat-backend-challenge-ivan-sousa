@@ -1,4 +1,4 @@
-package com.superchat.communicationservice.api.model;
+package com.superchat.communicationservice.controller.model;
 
 import com.superchat.communicationservice.dto.MessageDTO;
 import com.superchat.communicationservice.dto.mapper.MessageMapper;

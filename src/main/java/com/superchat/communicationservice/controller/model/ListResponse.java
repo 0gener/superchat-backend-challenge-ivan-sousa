@@ -1,4 +1,4 @@
-package com.superchat.communicationservice.api.model;
+package com.superchat.communicationservice.controller.model;
 
 import java.util.List;
 import java.util.stream.Collectors;

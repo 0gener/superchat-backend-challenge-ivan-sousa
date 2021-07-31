@@ -1,10 +1,10 @@
-package com.superchat.communicationservice.api;
+package com.superchat.communicationservice.controller;
 
 import javax.validation.Valid;
 
-import com.superchat.communicationservice.api.model.MessageCreateRequest;
-import com.superchat.communicationservice.api.model.MessageCreateResponse;
-import com.superchat.communicationservice.api.model.MessageListResponse;
+import com.superchat.communicationservice.controller.model.MessageCreateRequest;
+import com.superchat.communicationservice.controller.model.MessageCreateResponse;
+import com.superchat.communicationservice.controller.model.MessageListResponse;
 import com.superchat.communicationservice.persistence.model.Message;
 import com.superchat.communicationservice.service.MessagesService;
 
