@@ -6,6 +6,6 @@ import com.superchat.communicationservice.persistence.model.Contact;
 public class EmailGateway implements MessageGateway {
     @Override
     public void sendMessage(Contact contact, String body) {
-        // TODO Auto-generated method stub
+        // TODO Missing implementation
     }
 }

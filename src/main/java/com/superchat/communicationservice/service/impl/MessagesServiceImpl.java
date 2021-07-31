@@ -9,6 +9,8 @@ import com.superchat.communicationservice.persistence.repository.ContactReposito
 import com.superchat.communicationservice.persistence.repository.MessageRepository;
 import com.superchat.communicationservice.service.MessagesService;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
 import lombok.AllArgsConstructor;
@@ -32,5 +34,13 @@ public class MessagesServiceImpl implements MessagesService {
         MessageGatewayFactory.getGateway(dto.getGateway()).sendMessage(contact, replacedBody);
 
         return message;
+    }
+
+    @Override
+    public Page<Message> listMessages(String username, Long contactId, int page, int size) {
+        Contact contact = contactRepository.findByUsernameAndId(username, contactId)
+                .orElseThrow(() -> new ContactNotFoundException());
+
+        return messageRepository.findAllByContact(contact, PageRequest.of(page, size));
     }
 }
