@@ -8,6 +8,9 @@ import com.superchat.communicationservice.persistence.model.Message;
 import com.superchat.communicationservice.persistence.repository.ContactRepository;
 import com.superchat.communicationservice.persistence.repository.MessageRepository;
 import com.superchat.communicationservice.service.MessagesService;
+import com.superchat.communicationservice.templating.TemplateEngine;
+import com.superchat.communicationservice.templating.impl.BitcoinPriceUSDPlaceholder;
+import com.superchat.communicationservice.templating.impl.ContactNamePlaceholder;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -27,8 +30,9 @@ public class MessagesServiceImpl implements MessagesService {
         Contact contact = contactRepository.findById(dto.getContactId())
                 .orElseThrow(() -> new ContactNotFoundException());
 
-        String replacedBody = dto.getBody().replace("{contact_name}", contact.getName()).replace("{btc_price_usd}",
-                "US$41,496.64");
+        TemplateEngine templateEngine = new TemplateEngine(new ContactNamePlaceholder(contact.getName()),
+                new BitcoinPriceUSDPlaceholder());
+        String replacedBody = templateEngine.render(dto.getBody());
 
         Message message = messageRepository.save(new Message(contact, dto.getChannel(), dto.getBody(), replacedBody));
 

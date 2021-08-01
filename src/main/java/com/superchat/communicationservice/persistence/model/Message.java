@@ -39,8 +39,8 @@ public class Message {
     private Contact contact;
 
     @NonNull
-    @Column(name = "gateway", nullable = false, unique = false)
-    private MessageChannelType gateway;
+    @Column(name = "channel", nullable = false, unique = false)
+    private MessageChannelType channel;
 
     @NonNull
     @Column(name = "original_body", nullable = false, unique = false)
