@@ -1,5 +1,6 @@
 package com.superchat.communicationservice.dto;
 
+import javax.validation.constraints.Email;
 import javax.validation.constraints.NotNull;
 
 import lombok.AllArgsConstructor;
@@ -18,6 +19,7 @@ public class ContactDetailsDTO {
     private String name;
 
     @NotNull
+    @Email
     private String email;
 
     @NotNull

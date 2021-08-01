@@ -19,15 +19,19 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 
 @RestController
 @RequestMapping(path = "/contacts")
+@Tag(name = "Contacts")
 @RequiredArgsConstructor
 public class ContactsController {
     @Autowired
     private ContactsService service;
 
+    @Operation(summary = "Create a contact")
     @PostMapping(consumes = "application/json", produces = "application/json")
     public ResponseEntity<ContactCreateResponse> createContact(@Valid @RequestBody ContactCreateRequest body) {
         Contact contact = service.createContact(body);
@@ -36,6 +40,7 @@ public class ContactsController {
         return new ResponseEntity<>(responseEntity, HttpStatus.CREATED);
     }
 
+    @Operation(summary = "List contacts")
     @GetMapping(produces = "application/json")
     public ResponseEntity<ContactListResponse> listContacts(@RequestParam(name = "page", defaultValue = "0") int page,
             @RequestParam(name = "size", defaultValue = "10") int size) {

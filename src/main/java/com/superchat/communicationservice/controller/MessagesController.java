@@ -21,15 +21,19 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 
 @RestController
 @RequestMapping(path = "/messages")
+@Tag(name = "Messages")
 @RequiredArgsConstructor
 public class MessagesController {
     @Autowired
     private MessagesService service;
 
+    @Operation(summary = "Send a message to a contact using a specific channel")
     @PostMapping(consumes = "application/json", produces = "application/json")
     public ResponseEntity<MessageCreateResponse> createMessage(@Valid @RequestBody MessageCreateRequest body) {
         Message entity = service.createMessage(body);
@@ -38,6 +42,7 @@ public class MessagesController {
         return new ResponseEntity<>(responseEntity, HttpStatus.CREATED);
     }
 
+    @Operation(summary = "List all conversations")
     @GetMapping(produces = "application/json")
     public ResponseEntity<MessageListResponse> listMessages(@RequestParam(name = "contactId") Long contactId,
             @RequestParam(name = "page", defaultValue = "0") int page,
@@ -48,6 +53,7 @@ public class MessagesController {
         return new ResponseEntity<MessageListResponse>(responseEntity, HttpStatus.OK);
     }
 
+    @Operation(summary = "Webhook to receive messages from external services")
     @PostMapping(path = "/external", consumes = "application/json", produces = "application/json")
     public ResponseEntity<MessageReceiveResponse> receiveMessage(@Valid @RequestBody MessageReceiveRequest body) {
         Message entity = service.receiveMessage(body);
