@@ -14,16 +14,16 @@ import lombok.AllArgsConstructor;
 
 @Service
 @AllArgsConstructor
-public class ContactsServicesImpl implements ContactsService {
+public class ContactsServiceImpl implements ContactsService {
     private ContactRepository contactRepository;
 
     @Override
-    public Contact createContact(String username, ContactDetailsDTO contact) {
-        return contactRepository.save(ContactsMapper.toEntity(username, contact));
+    public Contact createContact(ContactDetailsDTO contact) {
+        return contactRepository.save(ContactsMapper.toEntity(contact));
     }
 
     @Override
-    public Page<Contact> listContacts(String username, int page, int size) {
-        return contactRepository.findAllByUsername(username, PageRequest.of(page, size));
+    public Page<Contact> listContacts(int page, int size) {
+        return contactRepository.findAll(PageRequest.of(page, size));
     }
 }

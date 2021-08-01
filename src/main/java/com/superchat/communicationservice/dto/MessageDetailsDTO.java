@@ -5,6 +5,7 @@ import javax.validation.constraints.NotNull;
 
 import com.superchat.communicationservice.messaging.factory.MessageChannelType;
 
+import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -12,6 +13,7 @@ import lombok.Setter;
 @Getter
 @Setter
 @NoArgsConstructor
+@EqualsAndHashCode
 public class MessageDetailsDTO {
     @NotNull
     private Long contactId;

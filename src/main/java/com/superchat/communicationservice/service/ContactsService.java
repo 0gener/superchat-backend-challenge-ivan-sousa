@@ -6,7 +6,7 @@ import com.superchat.communicationservice.persistence.model.Contact;
 import org.springframework.data.domain.Page;
 
 public interface ContactsService {
-    public Contact createContact(String username, ContactDetailsDTO contact);
+    public Contact createContact(ContactDetailsDTO contact);
 
-    public Page<Contact> listContacts(String username, int page, int size);
+    public Page<Contact> listContacts(int page, int size);
 }

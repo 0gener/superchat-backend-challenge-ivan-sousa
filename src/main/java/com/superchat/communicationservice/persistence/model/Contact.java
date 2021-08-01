@@ -12,6 +12,7 @@ import javax.persistence.Table;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
+import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.NonNull;
@@ -24,25 +25,25 @@ import lombok.Setter;
 @NoArgsConstructor
 @RequiredArgsConstructor
 @Table(name = "contacts")
+@EqualsAndHashCode(onlyExplicitlyIncluded = true)
 public class Contact {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
     @NonNull
-    @Column(name = "username", nullable = false, unique = false)
-    private String username;
-
-    @NonNull
     @Column(name = "name", nullable = false, unique = false)
+    @EqualsAndHashCode.Include
     private String name;
 
     @NonNull
     @Column(name = "email", nullable = false, unique = false)
+    @EqualsAndHashCode.Include
     private String email;
 
     @NonNull
     @Column(name = "phone_number", nullable = false, unique = false)
+    @EqualsAndHashCode.Include
     private String phoneNumber;
 
     @CreationTimestamp

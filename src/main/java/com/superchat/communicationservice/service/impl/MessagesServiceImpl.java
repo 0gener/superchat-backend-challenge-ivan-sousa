@@ -23,8 +23,8 @@ public class MessagesServiceImpl implements MessagesService {
     private MessageChannelFactory messageChannelFactory;
 
     @Override
-    public Message sendMessage(String username, MessageDetailsDTO dto) {
-        Contact contact = contactRepository.findByUsernameAndId(username, dto.getContactId())
+    public Message sendMessage(MessageDetailsDTO dto) {
+        Contact contact = contactRepository.findById(dto.getContactId())
                 .orElseThrow(() -> new ContactNotFoundException());
 
         String replacedBody = dto.getBody().replace("{contact_name}", contact.getName()).replace("{btc_price_usd}",
@@ -38,9 +38,8 @@ public class MessagesServiceImpl implements MessagesService {
     }
 
     @Override
-    public Page<Message> listMessages(String username, Long contactId, int page, int size) {
-        Contact contact = contactRepository.findByUsernameAndId(username, contactId)
-                .orElseThrow(() -> new ContactNotFoundException());
+    public Page<Message> listMessages(Long contactId, int page, int size) {
+        Contact contact = contactRepository.findById(contactId).orElseThrow(() -> new ContactNotFoundException());
 
         return messageRepository.findAllByContact(contact, PageRequest.of(page, size));
     }

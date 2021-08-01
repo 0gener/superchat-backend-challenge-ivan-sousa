@@ -5,8 +5,8 @@ import com.superchat.communicationservice.dto.ContactDetailsDTO;
 import com.superchat.communicationservice.persistence.model.Contact;
 
 public class ContactsMapper {
-    public static Contact toEntity(String username, ContactDetailsDTO dto) {
-        return new Contact(username, dto.getName(), dto.getEmail(), dto.getPhoneNumber());
+    public static Contact toEntity(ContactDetailsDTO dto) {
+        return new Contact(dto.getName(), dto.getEmail(), dto.getPhoneNumber());
     }
 
     public static ContactDTO toDto(Contact entity) {
