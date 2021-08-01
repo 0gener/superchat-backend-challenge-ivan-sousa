@@ -43,7 +43,7 @@ public class Message {
     private MessageChannelType channel;
 
     @NonNull
-    @Column(name = "orientation", nullable = false, unique = false, columnDefinition = "ENUM('SENT', 'RECEIVED')")
+    @Column(name = "orientation", nullable = false, unique = false)
     private MessageOrientation orientation;
 
     @NonNull
