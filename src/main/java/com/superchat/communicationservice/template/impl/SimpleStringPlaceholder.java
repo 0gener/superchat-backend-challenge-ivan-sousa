@@ -1,6 +1,6 @@
-package com.superchat.communicationservice.templating.impl;
+package com.superchat.communicationservice.template.impl;
 
-import com.superchat.communicationservice.templating.TemplatePlaceholder;
+import com.superchat.communicationservice.template.TemplatePlaceholder;
 
 public class SimpleStringPlaceholder extends TemplatePlaceholder {
     private String replacement;

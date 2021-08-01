@@ -43,12 +43,12 @@ public class Message {
     private MessageChannelType channel;
 
     @NonNull
-    @Column(name = "original_body", nullable = false, unique = false)
-    private String originalBody;
+    @Column(name = "orientation", nullable = false, unique = false, columnDefinition = "ENUM('SENT', 'RECEIVED')")
+    private MessageOrientation orientation;
 
     @NonNull
-    @Column(name = "replaced_body", nullable = false, unique = false)
-    private String replacedBody;
+    @Column(name = "body", nullable = false, unique = false)
+    private String body;
 
     @CreationTimestamp
     @Column(name = "created_at", nullable = false, unique = false)

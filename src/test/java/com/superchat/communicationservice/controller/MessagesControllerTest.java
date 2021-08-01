@@ -13,6 +13,7 @@ import com.superchat.communicationservice.controller.model.MessageCreateRequest;
 import com.superchat.communicationservice.messaging.factory.MessageChannelType;
 import com.superchat.communicationservice.persistence.model.Contact;
 import com.superchat.communicationservice.persistence.model.Message;
+import com.superchat.communicationservice.persistence.model.MessageOrientation;
 import com.superchat.communicationservice.service.MessagesService;
 
 import org.junit.jupiter.api.Test;
@@ -49,8 +50,8 @@ public class MessagesControllerTest {
                 Contact contact = new Contact();
                 contact.setId(1L);
 
-                when(service.sendMessage(request)).thenReturn(
-                                new Message(contact, request.getChannel(), request.getBody(), request.getBody()));
+                when(service.createMessage(request)).thenReturn(
+                                new Message(contact, request.getChannel(), MessageOrientation.SENT, request.getBody()));
 
                 this.mockMvc.perform(MockMvcRequestBuilders.post("/messages")
                                 .content(objectMapper.writeValueAsString(request))
@@ -143,7 +144,7 @@ public class MessagesControllerTest {
                 contact.setId(1L);
 
                 List<Message> list = new ArrayList<>();
-                list.add(new Message(contact, MessageChannelType.SMS, "Test message", "Test message"));
+                list.add(new Message(contact, MessageChannelType.SMS, MessageOrientation.SENT, "Test message"));
 
                 Page<Message> pageEntity = new PageImpl<Message>(list, PageRequest.of(page, size), list.size());
                 MessageListResponse response = new MessageListResponse(pageEntity);

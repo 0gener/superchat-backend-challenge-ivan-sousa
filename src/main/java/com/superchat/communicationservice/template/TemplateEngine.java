@@ -1,4 +1,4 @@
-package com.superchat.communicationservice.templating;
+package com.superchat.communicationservice.template;
 
 public class TemplateEngine {
     private TemplatePlaceholder[] placeholders;

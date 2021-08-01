@@ -1,4 +1,4 @@
-package com.superchat.communicationservice.templating.impl;
+package com.superchat.communicationservice.template.impl;
 
 import java.net.URI;
 import java.net.http.HttpClient;
@@ -7,7 +7,7 @@ import java.net.http.HttpResponse;
 import java.net.http.HttpResponse.BodyHandlers;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.superchat.communicationservice.templating.TemplatePlaceholder;
+import com.superchat.communicationservice.template.TemplatePlaceholder;
 
 public class BitcoinPriceUSDPlaceholder extends TemplatePlaceholder {
     public BitcoinPriceUSDPlaceholder() {

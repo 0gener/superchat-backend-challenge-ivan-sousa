@@ -10,7 +10,8 @@ public class MessageMapper {
         dto.setId(entity.getId());
         dto.setContactId(entity.getContact().getId());
         dto.setChannel(entity.getChannel());
-        dto.setBody(entity.getReplacedBody());
+        dto.setOrientation(entity.getOrientation());
+        dto.setBody(entity.getBody());
         dto.setCreatedAt(entity.getCreatedAt());
         dto.setUpdatedAt(entity.getUpdatedAt());
 

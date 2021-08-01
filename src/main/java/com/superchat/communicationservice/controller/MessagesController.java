@@ -5,6 +5,8 @@ import javax.validation.Valid;
 import com.superchat.communicationservice.controller.model.MessageCreateRequest;
 import com.superchat.communicationservice.controller.model.MessageCreateResponse;
 import com.superchat.communicationservice.controller.model.MessageListResponse;
+import com.superchat.communicationservice.controller.model.MessageReceiveRequest;
+import com.superchat.communicationservice.controller.model.MessageReceiveResponse;
 import com.superchat.communicationservice.persistence.model.Message;
 import com.superchat.communicationservice.service.MessagesService;
 
@@ -29,8 +31,8 @@ public class MessagesController {
     private MessagesService service;
 
     @PostMapping(consumes = "application/json", produces = "application/json")
-    public ResponseEntity<MessageCreateResponse> sendMessage(@Valid @RequestBody MessageCreateRequest body) {
-        Message entity = service.sendMessage(body);
+    public ResponseEntity<MessageCreateResponse> createMessage(@Valid @RequestBody MessageCreateRequest body) {
+        Message entity = service.createMessage(body);
         MessageCreateResponse responseEntity = new MessageCreateResponse(entity);
 
         return new ResponseEntity<>(responseEntity, HttpStatus.CREATED);
@@ -44,5 +46,13 @@ public class MessagesController {
         MessageListResponse responseEntity = new MessageListResponse(list);
 
         return new ResponseEntity<MessageListResponse>(responseEntity, HttpStatus.OK);
+    }
+
+    @PostMapping(path = "/external", consumes = "application/json", produces = "application/json")
+    public ResponseEntity<MessageReceiveResponse> receiveMessage(@Valid @RequestBody MessageReceiveRequest body) {
+        Message entity = service.receiveMessage(body);
+        MessageReceiveResponse responseEntity = new MessageReceiveResponse(entity);
+
+        return new ResponseEntity<>(responseEntity, HttpStatus.CREATED);
     }
 }

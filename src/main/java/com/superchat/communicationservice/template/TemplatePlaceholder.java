@@ -1,4 +1,4 @@
-package com.superchat.communicationservice.templating;
+package com.superchat.communicationservice.template;
 
 import lombok.Getter;
 

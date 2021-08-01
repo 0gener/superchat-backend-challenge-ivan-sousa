@@ -1,4 +1,4 @@
-package com.superchat.communicationservice.templating.impl;
+package com.superchat.communicationservice.template.impl;
 
 public class ContactNamePlaceholder extends SimpleStringPlaceholder {
     public ContactNamePlaceholder(String replacement) {
